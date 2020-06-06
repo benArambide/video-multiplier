@@ -13,7 +13,7 @@ const Video = ({ video, onDeletedClick = () => {} }) => {
     <div className={'video-responsive relative'}>
       <iframe src={parseVideoUrl(video)}>
       </iframe>
-      <div className={'absolute bottom-0 right-0 left-0 p-1 text-right'}>
+      <div className={'absolute bottom-0 right-0 p-1 text-right'}>
         <Button danger={true} onClick={() => onDeletedClick(video)}>Eliminar</Button>
       </div>
     </div>
