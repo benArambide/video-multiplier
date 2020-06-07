@@ -14,7 +14,7 @@ const Video = ({ video, onDeletedClick = () => {} }) => {
       <iframe src={parseVideoUrl(video)}>
       </iframe>
       <div className={'absolute bottom-0 right-0 p-1 text-right'}>
-        <Button danger={true} onClick={() => onDeletedClick(video)}>Eliminar</Button>
+        <Button type="primary" danger={true} onClick={() => onDeletedClick(video)} size={'small'}>Delete</Button>
       </div>
     </div>
   );
