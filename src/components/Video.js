@@ -1,23 +1,22 @@
 import React from 'react';
-import { parseYoutubeVideoUrl } from '../utils/youtube';
 import { Button } from 'antd';
-import { match, isEmpty } from 'ramda';
+import TwitchVideo from "./videos/TwitchVideo";
+import YoutubeVideo from "./videos/YoutubeVideo";
+import OtherVideo from "./videos/OtherVideo";
 
 const Video = ({ video, onDeletedClick = () => {} }) => {
-  const parseVideoUrl = videoUrl => {
-    const ytRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/gm;
-    return !isEmpty(match(ytRegex, videoUrl.src)) ? parseYoutubeVideoUrl(videoUrl.src) : videoUrl.src;
-  };
-
   return (
     <div className={'video-responsive relative'}>
-      <iframe src={parseVideoUrl(video)}>
-      </iframe>
+      { video.type === 'twitch' && <TwitchVideo video={video} /> }
+      { video.type === 'youtube' && <YoutubeVideo video={video} /> }
+      { video.type === 'other' && <OtherVideo video={video} /> }
       <div className={'absolute bottom-0 right-0 p-1 text-right'}>
-        <Button type="primary" danger={true} onClick={() => onDeletedClick(video)} size={'small'}>Delete</Button>
+        <Button type="primary" danger={true} onClick={() => onDeletedClick(video)} size={'small'}>
+          Delete
+        </Button>
       </div>
     </div>
   );
-};
+}
 
 export default Video;

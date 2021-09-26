@@ -3,6 +3,7 @@ import {map, toString, isNil, reject, propEq} from 'ramda';
 import Video from "./Video";
 import MenuButton from "./MenuButton";
 import MenuGridButton from "./MenuGridButton";
+import {parseVideo} from "../utils/video";
 
 const VIDEO_LIST_NAME = 'RO_VIDEO_LIST_NAME';
 const saveLocal = data => sessionStorage.setItem(VIDEO_LIST_NAME, toString(data));
@@ -13,10 +14,7 @@ const Panel = () => {
   const [columns, setColumns] = useState(2);
 
   const onVideoAdded = videoAdded => {
-    const newVideoList = [
-      ...videos,
-      videoAdded
-    ];
+    const newVideoList = [...videos, parseVideo(videoAdded)];
     setVideoList(newVideoList);
     saveLocal(newVideoList);
   };
@@ -58,8 +56,8 @@ const Panel = () => {
       <div className={'flex flex-wrap --mx-1 min-h-screen bg-gray-200'}>
         {
           map( video => (
-            <div className={`w-full md:w-1/${columns}`}>
-              <Video video={video} onDeletedClick={onDeletedClick}/>
+            <div className={`w-full md:w-1/${columns}`} key={video.src}>
+              <Video video={video} onDeletedClick={onDeletedClick} />
             </div>
           ), videos)
         }

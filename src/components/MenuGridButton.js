@@ -60,7 +60,7 @@ const MenuGridButton = ({ onChangedGrid = () => {} }) => {
             <Select>
               {
                 map(col => (
-                  <Select.Option value={col}>{`${col} columns`}</Select.Option>
+                  <Select.Option value={col} key={col}>{`${col} columns`}</Select.Option>
                 ), columns)
               }
             </Select>
