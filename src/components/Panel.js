@@ -4,6 +4,7 @@ import Video from "./Video";
 import MenuButton from "./MenuButton";
 import MenuGridButton from "./MenuGridButton";
 import {parseVideo} from "../utils/video";
+import PageHeader from "./PageHeader";
 
 const VIDEO_LIST_NAME = 'RO_VIDEO_LIST_NAME';
 const saveLocal = data => sessionStorage.setItem(VIDEO_LIST_NAME, toString(data));
@@ -38,22 +39,8 @@ const Panel = () => {
 
   return (
     <div>
-      <div className="w-full mx-auto py-1 px-4">
-        <div className="w-full flex items-center justify-between">
-          <a
-            className="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-            href="#">
-            Video Multiplier
-          </a>
-          <div className="flex items-center text-right">
-            <div>
-              <p className="leading-none m-0">Add your video url and it will embed in a frame view. You need to verify if your video can be embedded.</p>
-              <p className="leading-none m-0">In youtube video case, we gonna parse all the urls.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={'flex flex-wrap --mx-1 min-h-screen bg-gray-200'}>
+      <PageHeader />
+      <div className={'flex flex-wrap --mx-1'}>
         {
           map( video => (
             <div className={`w-full md:w-1/${columns}`} key={video.src}>
